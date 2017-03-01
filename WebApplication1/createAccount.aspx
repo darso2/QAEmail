@@ -24,11 +24,11 @@
 
             Re-enter password :           <asp:TextBox ID="TextBox4" runat="server" style="position:absolute; left:200px"></asp:TextBox>
             <br /><br />
-            Security Question: What is your favourite colour and favourite animal? Please write in the box below.
+            Security Question: What is your favourite colour and favourite animal? Please combine and write in the box below.
             <br /> <asp:TextBox ID="TextBox6" runat="server" style="position:absolute; top: 224px; left: 10px; width: 283px;"></asp:TextBox><br />
         </p>
 
-        <asp:Button ID="createbutt" runat="server" text="Create Account" style="position:absolute;left:350px" />
+        <asp:Button ID="createbutt" runat="server" text="Create Account" style="position:absolute;left:350px" OnClick="createbutt_Click" />
     </form>
 </body>
 </html>

@@ -13,5 +13,17 @@ namespace WebApplication1
         {
 
         }
+        //email no spaces, email unique, passwords has to be the same
+        protected void createbutt_Click(object sender, EventArgs e)
+        {
+            if (TextBox1.Text == "" | TextBox2.Text == "" | TextBox3.Text == "" | TextBox4.Text == "" | TextBox5.Text == "" | TextBox6.Text == "" )
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Please fill in ALL the entries');", true);
+            }
+            else
+            {
+
+            }
+        }
     }
 }

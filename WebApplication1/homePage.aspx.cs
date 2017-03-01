@@ -18,5 +18,11 @@ namespace WebApplication1
         {
             Response.Redirect("createAccount.aspx");
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("loginPage.aspx");
+
+        }
     }
 }
