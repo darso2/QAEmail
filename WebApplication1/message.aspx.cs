@@ -19,7 +19,7 @@ namespace WebApplication1
             cmd.Connection = con;
             id = Request.QueryString["id"];
             Session["id"] = id;
-            cmd.CommandText = "Select text,fromUser,subject from Emails where EmailId='" + id + "';";
+            cmd.CommandText = "Select text,fromUser,subject,deleted from Emails where EmailId='" + id + "';";
             using (SqlDataReader r = cmd.ExecuteReader())
                 while (r.Read())
                 {
@@ -27,21 +27,42 @@ namespace WebApplication1
                     Session["fromUser"] = r[1].ToString();
                     subject.InnerHtml = r[2].ToString();
                     textmessage.InnerHtml = r[0].ToString();
+                  //  string confirm = r[3].ToString();
+                  //  if (r[4].ToString() == "true")
+                  //  {
+                  //      delete.Visible = false;
+                  //  }
+                    string returnvalue = Request.QueryString["returnstring"].ToString();
+                    if (!Page.IsPostBack)
+                    {
+                        if (returnvalue == "sent" | returnvalue == "deleted")
+                        this.delete.Visible = false;
+                    }
+                    
                 }
 
             cmd.CommandText = "Update Emails set status = 'r' where EmailId='"+id+"';";
             cmd.ExecuteNonQuery();
+
         }
 
         protected void back_Click(object sender, EventArgs e)
         {
-            Response.Redirect("inbox.aspx");
+
+            string returnvalue = Request.QueryString["returnstring"].ToString();
+            Response.Redirect(returnvalue + ".aspx");
         }
 
         protected void Reply_Click(object sender, EventArgs e)
         {
             
             Response.Redirect("newMail.aspx");
+        }
+
+        protected void Delete_Click(object sender, EventArgs e)
+        {
+            cmd.CommandText = "UPDATE Emails SET deleted = 'true' WHERE Emailid='" + id + "';";
+            cmd.ExecuteNonQuery();
         }
     }
 }

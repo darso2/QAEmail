@@ -24,6 +24,10 @@
         
         <asp:Button ID="back" runat="server" Height="19px" Text="Back" Width="43px" OnClick="back_Click" />
         
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        
+        <asp:Button ID="delete" runat="server" Height="19px" Text="Delete" Width="62px" OnClientClick="return confirm('Are you sure? Once deleted it cannot be restored.')" onclick="Delete_Click" />
+        
         <br />
         
         <br />

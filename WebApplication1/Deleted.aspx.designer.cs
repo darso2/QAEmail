@@ -10,7 +10,7 @@
 namespace WebApplication1 {
     
     
-    public partial class WebForm3 {
+    public partial class Deleted {
         
         /// <summary>
         /// form1 control.

@@ -66,6 +66,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Deleted.aspx" />
+    <Content Include="inboxUpdate.aspx" />
     <Content Include="loginPage.aspx" />
     <Content Include="message.aspx" />
     <Content Include="newMail.aspx" />
@@ -83,11 +85,26 @@
     <Content Include="App_Data\Database1_log.ldf">
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
+    <Content Include="Sent.aspx" />
     <Content Include="Web.config" />
     <Content Include="homePage.aspx" />
     <Content Include="createAccount.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Deleted.aspx.cs">
+      <DependentUpon>Deleted.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Deleted.aspx.designer.cs">
+      <DependentUpon>Deleted.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="inboxUpdate.aspx.cs">
+      <DependentUpon>inboxUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inboxUpdate.aspx.designer.cs">
+      <DependentUpon>inboxUpdate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="loginPage.aspx.cs">
       <DependentUpon>loginPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -130,6 +147,13 @@
     </Compile>
     <Compile Include="inbox.aspx.designer.cs">
       <DependentUpon>inbox.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sent.aspx.cs">
+      <DependentUpon>Sent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sent.aspx.designer.cs">
+      <DependentUpon>Sent.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <PropertyGroup>

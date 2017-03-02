@@ -31,6 +31,15 @@ namespace WebApplication1 {
         protected global::System.Web.UI.WebControls.Button back;
         
         /// <summary>
+        /// delete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button delete;
+        
+        /// <summary>
         /// from control.
         /// </summary>
         /// <remarks>

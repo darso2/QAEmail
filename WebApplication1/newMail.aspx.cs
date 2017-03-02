@@ -11,7 +11,8 @@ namespace WebApplication1
     {
         SqlConnection con = new SqlConnection("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename='C:\\Users\\Administrator\\Documents\\Visual Studio 2015\\Projects\\WebApplication1\\WebApplication1\\App_Data\\Database1.mdf';Integrated Security = True");
         SqlCommand cmd = new SqlCommand();
-
+        string date;
+        string id;
         public newMail()
         {
             con.Open();
@@ -20,14 +21,18 @@ namespace WebApplication1
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-             var id = Session["id"].ToString();
-            if (id != "")
+            if (Session["id"]  != null )
             {
+                id = Session["id"].ToString();
                 cmd.CommandText = "SELECT fromUser,subject from Emails where EmailId='" + id + "';";
+
                 using (SqlDataReader r = cmd.ExecuteReader())
                 {
-                    Text1.Value = r[0].ToString();
-                    Text3.Value = r[1].ToString();
+                    while (r.Read())
+                    {
+                        Text1.Value = r[0].ToString();
+                        Text3.Value = "Re:" + r[1].ToString();
+                    }
                 }
             }
         }
@@ -39,13 +44,21 @@ namespace WebApplication1
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Please enter a recipient email address" + "');", true);
                 Text1.Focus();
             }
-            else if (Text2.Value == "")
+            else if (TextArea1.Value == "")
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Please enter a non-empty message" + "');", true);
                 TextArea1.Focus();
             }
             else
-                cmd.CommandText = "";
+            {
+                date = DateTime.Now.ToString("d");
+                
+                cmd.CommandText = "INSERT INTO Emails([fromUser],[toUser],[subject],[text],[date],[status],[deleted]) Values ('" + Session["user"].ToString() + "','" + Text1.Value.ToString() + "','" + Text3.Value.ToString() + "','" + TextArea1.Value + "','" + date + "','u','n');";
+                cmd.ExecuteNonQuery();
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Your email has been sent." + "');", true);
+                Response.Redirect("inbox.aspx");
+            }
+
         }
     }
 }   
