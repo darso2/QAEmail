@@ -22,6 +22,12 @@ namespace WebApplication1
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var color = Request.Cookies["username"].Value;
+            PageForm.Attributes.Add("bgcolor", color);
+            if (Session["user"] == null)
+            {
+                Response.Redirect("loginPage.aspx");
+            }
             con.Open();
             useremail = Session["user"].ToString();
             Session.Clear();

@@ -17,25 +17,30 @@ namespace WebApplication1
         {
             con.Open();
             cmd.Connection = con;
-
+            var color = Request.Cookies["username"].Value;
+            PageForm.Attributes.Add("bgcolor", color);
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["id"]  != null )
-            {
-                id = Session["id"].ToString();
-                cmd.CommandText = "SELECT fromUser,subject from Emails where EmailId='" + id + "';";
 
-                using (SqlDataReader r = cmd.ExecuteReader())
+            if (Session["user"] == null)
+            {
+                Response.Redirect("loginPage.aspx");
+            }
+            id = Session["id"].ToString();
+            cmd.CommandText = "SELECT fromUser,subject from Emails where EmailId='" + id + "';";
+
+            using (SqlDataReader r = cmd.ExecuteReader())
+            {
+                while (r.Read())
                 {
-                    while (r.Read())
-                    {
-                        Text1.Value = r[0].ToString();
-                        Text3.Value = "Re:" + r[1].ToString();
-                    }
+                    Text1.Value = r[0].ToString();
+                    Text3.Value = "Re:" + r[1].ToString();
                 }
             }
         }
+    
+
 
         protected void sendMail_Click(object sender, EventArgs e)
         {
@@ -49,6 +54,11 @@ namespace WebApplication1
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Please enter a non-empty message" + "');", true);
                 TextArea1.Focus();
             }
+            else if (Text2.Value != "")
+            {
+                string[] splittedEmail = Text2.Value.Split();
+            }
+
             else
             {
                 date = DateTime.Now.ToString("d");

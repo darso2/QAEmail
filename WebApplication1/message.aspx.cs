@@ -15,11 +15,18 @@ namespace WebApplication1
         string id;
         protected void Page_Load(object sender, EventArgs e)
         {
+            touser.Visible = false;
+                var color = Request.Cookies["username"].Value;
+            PageForm.Attributes.Add("bgcolor", color);
+            if (Session["user"] == null)
+            {
+                Response.Redirect("loginPage.aspx");
+            }
             con.Open();
             cmd.Connection = con;
             id = Request.QueryString["id"];
             Session["id"] = id;
-            cmd.CommandText = "Select text,fromUser,subject,deleted from Emails where EmailId='" + id + "';";
+            cmd.CommandText = "Select text,fromUser,subject,deleted,toUser from Emails where EmailId='" + id + "';";
             using (SqlDataReader r = cmd.ExecuteReader())
                 while (r.Read())
                 {
@@ -37,8 +44,15 @@ namespace WebApplication1
                     {
                         if (returnvalue == "sent" | returnvalue == "deleted")
                         this.delete.Visible = false;
+
+                        if (returnvalue == "sent" | returnvalue == "deleted")
+                            this.Reply.Visible = false;
+                        if (returnvalue == "sent")
+                            touser.Visible = true;
+                        touser.InnerHtml += r[4].ToString();
+                       
                     }
-                    
+
                 }
 
             cmd.CommandText = "Update Emails set status = 'r' where EmailId='"+id+"';";

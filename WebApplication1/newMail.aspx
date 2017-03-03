@@ -19,7 +19,7 @@
             
     </style>
 </head>
-<body>
+<body id="PageForm" runat="server">
     <form id="form1" runat="server">
     <div>
     

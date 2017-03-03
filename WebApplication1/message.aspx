@@ -19,7 +19,7 @@
         }
     </style>
 </head>
-<body>
+<body id="PageForm" runat="server">
     <form id="form1" runat="server">
         
         <asp:Button ID="back" runat="server" Height="19px" Text="Back" Width="43px" OnClick="back_Click" />
@@ -31,7 +31,8 @@
         <br />
         
         <br />
-    From:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span id="from" runat="server"></span> <br /> <br />
+    From:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span id="from" runat="server"></span>
+        <div id="touser" runat="server"> To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </div><br /> <br />
     Subject: &nbsp;&nbsp;&nbsp;&nbsp; <span id="subject" runat="server"></span><br /><br />
         Message:
         <div id="textmessage" runat="server" class="messagebox"></div>

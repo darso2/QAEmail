@@ -5,7 +5,7 @@
 <head runat="server">
     <title></title>
     </head>
-<body>
+<body id="PageForm" runat="server">
     <form id="form1" runat="server">
     <div id="inboxtable" runat="server">
   <!--  <table >

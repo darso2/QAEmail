@@ -9,9 +9,12 @@ namespace WebApplication1
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        string pagecolour;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
+            Response.Cookies["userName"].Expires = DateTime.Now.AddDays(1);
+                
         }
 
         protected void Button2_Click(object sender, EventArgs e)
@@ -23,6 +26,23 @@ namespace WebApplication1
         {
             Response.Redirect("loginPage.aspx");
 
+        }
+
+        protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(RadioButtonList1.SelectedValue == "0")
+            {
+                Response.Cookies["userName"].Value = "Red";
+                
+            }
+            else if (RadioButtonList1.SelectedValue == "1")
+            {
+                Response.Cookies["userName"].Value = "yellow";
+                
+            }
+            else if (RadioButtonList1.SelectedValue == "2")
+                Response.Cookies["userName"].Value = "Blue";
+            
         }
     }
 }

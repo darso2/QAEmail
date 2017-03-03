@@ -6,7 +6,7 @@
 <head runat="server">
     <title></title>
 </head>
-<body>
+<body id="PageBody" runat="server">
     <form id="form1" runat="server">
         <div id="main"  runat="server">
             Email:

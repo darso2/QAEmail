@@ -9,19 +9,50 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="EmailDataSource">
+
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="EmailId" DataSourceID="SqlDataSource1">
             <Columns>
-                <asp:BoundField DataField="fromUser" HeaderText="From" SortExpression="fromUser" />
-                <asp:HyperLinkField DataNavigateUrlFields="subject"     DataNavigateUrlFormatString="message.aspx?ID=  HeaderText="Subject" SortExpression="subject" />
-                <asp:BoundField DataField="date" HeaderText="Date" SortExpression="date" />
-                <asp:CheckBoxField DataField="deleted" HeaderText="Deleted" />
+                <asp:TemplateField HeaderText="EmailId" InsertVisible="False" SortExpression="EmailId" Visible="False">
+                    <EditItemTemplate>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("EmailId") %>'></asp:Label>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label4" runat="server" Text='<%# Bind("EmailId") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Delete">
+                    <ItemTemplate>
+                        <asp:CheckBox ID="checkBoxDelete" runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="fromUser" SortExpression="fromUser">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("fromUser") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("fromUser") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="subject" SortExpression="subject">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("subject") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("subject") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="date" SortExpression="date">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("date") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label3" runat="server" Text='<%# Bind("date") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="EmailDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [fromUser], [subject], [date],[deleted] FROM [Emails] WHERE ([toUser] = @toUser)">
-            <SelectParameters>
-                <asp:SessionParameter DefaultValue="" Name="toUser" SessionField="user" Type="String" />
-            </SelectParameters>
-        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [fromUser], [subject], [date], [EmailId] FROM [Emails]"></asp:SqlDataSource>
+
     </div>
     </form>
 </body>
