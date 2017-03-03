@@ -19,6 +19,9 @@ namespace WebApplication1
         {
             con.Open();
             cmd.Connection = con;
+            var color = Request.Cookies["username"].Value;
+            PageBody.Attributes.Add("bgcolor", color);
+
         }
 
         protected void login_click(object sender, EventArgs e)
@@ -39,14 +42,14 @@ namespace WebApplication1
                 using (SqlDataReader r = cmd.ExecuteReader())
                     while (r.Read())
                     {
-                        if (TextBox2.Text==r["Password"].ToString())
+                        if (TextBox1.Text == r["EmailAddress"].ToString() || TextBox2.Text==r["Password"].ToString())
                         {
                             Session["user"] = r["EmailAddress"];
                             Response.Redirect("inbox.aspx");
                         }
                         else
                         {
-                            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Incorrect Email and Password" + "');", true);
+                            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "confirm('" + "Incorrect Email and Password" + "');", true);
                         }
                     }
             }  
