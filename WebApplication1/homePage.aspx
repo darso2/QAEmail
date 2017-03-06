@@ -13,7 +13,7 @@
         <asp:RadioButtonList ID="RadioButtonList1" style="position:absolute;top:130px ;left:320px" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">    
             <asp:ListItem runat="server" id="option1" Value="0">Red</asp:ListItem>
     <asp:ListItem id="option2" runat="server" Value="1">Green</asp:ListItem>
-    <asp:ListItem id="option3" runat="server" Value="2">Blue</asp:ListItem>
+    <asp:ListItem id="option3" runat="server" Value="2">Yellow</asp:ListItem>
 </asp:RadioButtonList>
     </form>
 </body>

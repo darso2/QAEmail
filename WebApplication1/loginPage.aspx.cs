@@ -11,10 +11,9 @@ namespace WebApplication1
     public partial class loginPage : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = 'C:\\Users\\Administrator\\documents\\visual studio 2015\\Projects\\WebApplication1\\WebApplication1\\App_Data\\Database1.mdf'; Integrated Security = True");
-
-            SqlCommand cmd = new SqlCommand();
-
-
+        SqlCommand cmd = new SqlCommand();
+        
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             con.Open();
@@ -31,7 +30,7 @@ namespace WebApplication1
                 TextBox1.Text = "Please enter an email address here";
             }
 
-           else if (TextBox2.Text == "")
+            else if (TextBox2.Text == "")
             {
                 TextBox2.Text = "Please enter a Password here";
             }

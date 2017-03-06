@@ -36,23 +36,27 @@ namespace WebApplication1
                 Response.Redirect("loginPage.aspx");
             }
             con.Open();
+            //needed to the case of: replying back to a mail and then instantly composing a new mail
             useremail = Session["user"].ToString();
             Session.Clear();
             Session["user"] = useremail;
+
             cmd.Connection = con;
             inboxtable.InnerHtml += " <table border = \"1\">";
             inboxtable.InnerHtml += "<tr> <th class=\"auto-style2\">From</th> <th class=\"auto-style1\"> Subject</th> <th> Date (Month/Day/Year) </th></tr>";
+            //selects all the undeleted emails and displays them in the inbox
             cmd.CommandText = "Select * from Emails where toUser='" + useremail + "' and deleted='false';";
-
             using (SqlDataReader r = cmd.ExecuteReader())
             {
                 while (r.Read())
                 {
                      id = r[0].ToString();                    
                     var from = r[1].ToString();
-                    var subject = r[3].ToString();               
+                    var subject = r[3].ToString();    
+                    //cuts down the date without time           
                     var date = r[5].ToString();                    var a= date.Split();                    date = a[0];
-                    var read = r[6].ToString();                    Session["read"] = read;
+                    var read = r[6].ToString();               
+                    //this makes the messages. Unread are bold and we assign id and returnstring for them to generate the emails when clicked.
                     if (read == "u")
                         inboxtable.InnerHtml += "<tr><td><b> " + from + "</b></td> <td> <b><a href=\"message.aspx?id=" + id + "&returnstring=inbox\">" + subject + "</a></b></td> <td> <b>" + date + " </b></td><tr> ";
                     
@@ -62,7 +66,7 @@ namespace WebApplication1
                     }
                 }
             }
-
+            //creates hyperlinks to the send.aspx, delete.aspx, and inbox.aspx pages
             cmd.CommandText = "select count(*) from Emails where toUser='" + Session["user"] + "' and deleted = 'false';";
             using (SqlDataReader s = cmd.ExecuteReader())
             {

@@ -34,19 +34,17 @@ namespace WebApplication1
                     Session["fromUser"] = r[1].ToString();
                     subject.InnerHtml = r[2].ToString();
                     textmessage.InnerHtml = r[0].ToString();
-                  //  string confirm = r[3].ToString();
-                  //  if (r[4].ToString() == "true")
-                  //  {
-                  //      delete.Visible = false;
-                  //  }
+
+                    //if user didnt come from main inbox hide the reply and sent button
+                    //if user is visiting from the sent page then the To section is unhidden
                     string returnvalue = Request.QueryString["returnstring"].ToString();
                     if (!Page.IsPostBack)
                     {
                         if (returnvalue == "sent" | returnvalue == "deleted")
-                        this.delete.Visible = false;
-
-                        if (returnvalue == "sent" | returnvalue == "deleted")
+                        { 
+                            this.delete.Visible = false;
                             this.Reply.Visible = false;
+                        }
                         if (returnvalue == "sent")
                             touser.Visible = true;
                         touser.InnerHtml += r[4].ToString();
