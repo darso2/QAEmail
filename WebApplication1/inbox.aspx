@@ -19,6 +19,7 @@
         <span style="display:inline-block; margin-left:80px;" id="allmessage" runat="server" > <a href="inbox.aspx">Inbox</a></span>
         <span style="display:inline-block; margin-left:80px;" id="deletemessage" runat="server"><a href="deleted.aspx"> Deleted</a></span>
         <span style="display:inline-block; margin-left:80px;" id="sentmessage" runat="server"><a href="sent.aspx">Sent</a></span>
+        <asp:Button ID="logout" runat="server" Text="Logout" Height="25px" Width="100px" style="float:right" OnClick="logout_click"  />
     </form>
 </body>
 </html>

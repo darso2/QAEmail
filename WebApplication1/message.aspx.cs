@@ -77,6 +77,7 @@ namespace WebApplication1
         {
             cmd.CommandText = "UPDATE Emails SET deleted = 'true' WHERE Emailid='" + id + "';";
             cmd.ExecuteNonQuery();
+            Response.Redirect("inbox.aspx");
         }
     }
 }

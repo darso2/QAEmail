@@ -42,7 +42,7 @@ namespace WebApplication1
                 using (SqlDataReader r = cmd.ExecuteReader())
                     while (r.Read())
                     {
-                        if (TextBox1.Text == r["EmailAddress"].ToString() || TextBox2.Text==r["Password"].ToString())
+                        if (TextBox1.Text == r["EmailAddress"].ToString() && TextBox2.Text==r["Password"].ToString())
                         {
                             Session["user"] = r["EmailAddress"];
                             Response.Redirect("inbox.aspx");

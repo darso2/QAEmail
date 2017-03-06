@@ -20,6 +20,13 @@ namespace WebApplication1
             Response.Redirect("newMail.aspx");
         }
 
+        protected void logout_click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("home.aspx");
+        }
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             var color = Request.Cookies["username"].Value;
@@ -56,12 +63,12 @@ namespace WebApplication1
                 }
             }
 
-            cmd.CommandText = "select count(*) as abc from Emails where toUser='" + Session["user"] + "' and deleted = 'false';";
+            cmd.CommandText = "select count(*) from Emails where toUser='" + Session["user"] + "' and deleted = 'false';";
             using (SqlDataReader s = cmd.ExecuteReader())
             {
                 while (s.Read())
                 {
-                    allmessage.InnerHtml += " (" + s["abc"] + ")";
+                    allmessage.InnerHtml += " (" + s[0] + ")";
                 }
             }
 
@@ -82,5 +89,7 @@ namespace WebApplication1
                 }
             }
         }
+
+        //TODO delete button//
     }
 }
